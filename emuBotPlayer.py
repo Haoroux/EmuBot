@@ -31,6 +31,7 @@ async def on_ready():
 
 
 data = dataSave
+print(data)
 verifLetters = ['a','b','x','y']
 up = data["up"]
 down = data["down"]
@@ -55,15 +56,16 @@ usersStat = data['usersStat']
 @bot.tree.command(description="montre le guide d'utilisation")
 async def help(interaction: discord.Interaction):
     embed=discord.Embed()
-    embed.add_field(name="Help:", value="voici ce que vous devez écrire pour jouer : \nconfirmer = "+str(confirm)+"\nretour = "+str(back)+"\nraccourcis = "+str(shortcuts)+"\nouvrir le menu = "+str(confirm)+"\nhaut = "+str(up)+"\nbas = "+str(down)+"\ngauche = "+str(left)+"\ndroite = "+str(right)+"\n\nslash commandes disponibles : \n-help : montre les touches à écrire afin de jouer\n-amountofanswers : défini le nombre de réponses nécessaires avant de jouer\n-info : montre les infos actuelles du bot\n-managerole : sert à définir le rôle nécessaire afin de changer les options du bot(redémarrage nécessaire)\n-managechannel : sert à changer le channel où le bot lit les actions(pour le changer il vous faut l'id du channel)\n-managecontrols : sert à changer ce qu'il est nécessaire d'écrire afin de faire une action\n-usertotalactions : montre le nombre d'action effectué par soi ou une autre personne\n-usertop10 : montre le top 10 des joueurs les plus actifs\n-restart : redémarre et sauve les données du bot", inline=False)
+    embed.add_field(name="Help:", value="voici ce que vous devez écrire pour jouer : \nconfirmer = "+str(confirm)+"\nretour = "+str(back)+"\nraccourcis = "+str(shortcuts)+"\nouvrir le menu = "+str(backpack)+"\nhaut = "+str(up)+"\nbas = "+str(down)+"\ngauche = "+str(left)+"\ndroite = "+str(right)+"\n\nslash commandes disponibles : \n-help : montre les touches à écrire afin de jouer\n-amountofanswers : défini le nombre de réponses nécessaires avant de jouer\n-info : montre les infos actuelles du bot\n-managerole : sert à définir le rôle nécessaire afin de changer les options du bot(redémarrage nécessaire)\n-managechannel : sert à changer le channel où le bot lit les actions(pour le changer il vous faut l'id du channel)\n-managecontrols : sert à changer ce qu'il est nécessaire d'écrire afin de faire une action\n-usertotalactions : montre le nombre d'action effectué par soi ou une autre personne\n-usertop10 : montre le top 10 des joueurs les plus actifs\n-restart : redémarre et sauve les données du bot", inline=False)
     await interaction.response.send_message(embed=embed)
 
 
 @bot.tree.command(description='montres les informations utiles du bot')
 async def infos(interaction: discord.Interaction):
+    await interaction.response.defer()
     embed=discord.Embed()
-    embed.add_field(name="Informations:", value="nombres d'action : "+str(totalAnswers)+"\nrôle de paramètrages : "+modRole+"\nchannel d'actions : "+str(bot.get_channel(int(channelId)))+"\nnbr de réponse nécessaire : "+str(requiredAmountAnswers), inline=False)
-    await interaction.response.send_message(embed=embed)
+    embed.add_field(name="Informations:", value="nombres total d'action : "+str(totalAnswers)+"\nrôle de paramètrages : "+modRole+"\nchannel d'actions : "+str(bot.get_channel(int(channelId)))+"\nnbr de réponse nécessaire : "+str(requiredAmountAnswers), inline=False)
+    await interaction.followup.send(embed=embed)
 
 
 @bot.tree.command(description='change le rôle nécessaire pour modifier les paramètres du bot')
@@ -87,7 +89,7 @@ async def managechannel(interaction: discord.Interaction, channel_id: str):
 @managechannel.error
 async def managechannel(interaction:discord.Interaction, error: app_commands.AppCommandError):
     if isinstance(error, app_commands.MissingRole):
-        await interaction.response.send_message("Il semble que tu n'ais pas le rôle requis pour openSave()")
+        await interaction.response.send_message("Il semble que tu n'ais pas le rôle requis pour éxecuter la commande")
 
 
 @app_commands.choices(what_action = [
