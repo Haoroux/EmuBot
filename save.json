@@ -1,5 +1,5 @@
-{"lastModRole": "Animateur",
- "lastChannelId": "1224336236508872795",
+{"lastModRole": "Admin",
+ "lastChannelId": "None",
  "lastTotalAnswers": 3336,
  "lastRequiredAmountAnswers": 1,
  "up": ["haut", "up", "u"],
@@ -10,11 +10,4 @@
  "back": ["b"],
  "shortcuts": ["y"],
  "backpack": ["menu", "x"],
- "usersStat": {"917452188937244753": 769,
- "1183135979154976769": 0,
- "380411992445288448": 145,
- "1213983164184268931": 470,
- "905641695398481950": 48,
- "811302713941295105": 55,
- "1084519521248878794": 91,
- "777957775274672158": 219}}
+ "usersStat": {"1183135979154976769": 0}}
